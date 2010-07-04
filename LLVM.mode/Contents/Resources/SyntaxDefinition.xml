@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE syntax SYSTEM "syntax.dtd">
+<syntax>
+
+    <head>
+        <name>C</name> <!-- The definitions title -->
+        <charsintokens><![CDATA[_0987654321abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.]]></charsintokens> <!-- Valid Characters for Variables -->
+        <!-- <charsdelimitingtokens></charsdelimitingtokens> -->
+    </head>
+
+    <states>
+    
+        <default id="Base" color="#000" background-color="#fff" font-weight="normal" font-style="normal">
+            <keywords id="Keywords" color="#881350" font-weight="bold" useforautocomplete="yes">
+				<string>add</string>
+				<string>sub</string>
+				<string>mul</string>
+				<string>udiv</string>
+				<string>sdiv</string>
+				<string>urem</string>
+				<string>srem</string>
+				<string>fadd</string>
+				<string>fsub</string>
+				<string>fmul</string>
+				<string>fdiv</string>
+				<string>select</string>
+				<string>shl</string>
+				<string>ashr</string>
+				<string>lshr</string>
+				<string>phi</string>
+				<string>and</string>
+				<string>or</string>
+				<string>xor</string>
+				<string>ret</string>
+				<string>br</string>
+				<string>indirectbr</string>
+				<string>invoke</string>
+				<string>unwind</string>
+				<string>unreachable</string>
+				<string>call</string>
+				<string>va_arg</string>
+				<string>switch</string>
+				<string>frem</string>
+				<string>extractelement</string>
+				<string>insertelement</string>
+				<string>shufflevector</string>
+				<string>insertvalue</string>
+                <string>extractvalue</string>
+                <string>getelementptr</string>
+                <string>alloca</string>
+                <string>load</string>
+                <string>store</string>
+                <string>to</string>
+                <string>trunc</string>
+                <string>zext</string>
+                <string>sext</string>
+                <string>fptrunc</string>
+                <string>fpext</string>
+                <string>fptoui</string>
+                <string>fptosi</string>
+                <string>sitofp</string>
+                <string>uitofp</string>
+                <string>bitcast</string>
+                <string>inttoptr</string>
+                <string>ptrtoint</string>
+                <string>icmp</string>
+                <string>fcmp</string>
+                <string>undef</string>
+                <string>true</string>
+                <string>false</string>
+            </keywords>
+            
+            <keywords id="Numbers" color="#00f" inverted-color="#5d56ff" useforautocomplete="no">
+				<regex>(?&lt;![\w\d_])((?:[+-]?(?:(?:[0-9]+\.[0-9]*)|(?:\.[0-9]+))(?:[eE][+\-]?[0-9]+)?[fFlL]?)|(?:(?:(?:[1-9][0-9]*)|0[0-7]*|(?:0[xX][0-9a-fA-F]+))(?:(?:[uU][lL]?)|(?:[lL][uU]?))?))(?![\w\d_])</regex>
+            </keywords>
+            
+            <keywords id="FunctionRegex" color="#003369" useforautocomplete="no">
+				<regex>([A-Za-z0-9_]+ *)\(</regex>
+            </keywords>
+
+            <state id="Characters" color="#00f" font-weight="normal" font-style="normal">
+                <begin><regex>'(?=\\?.')</regex></begin>
+                <end><regex>(\\'')|(.')</regex></end>
+            </state>
+    
+            <state id="AutodocComment" type="comment" color="#236E25" font-weight="bold" font-style="italic">
+                <begin><regex>/\*"</regex></begin>
+                <end><regex>\*/</regex></end>
+                <import mode="Base" state="EmailAndURLContainerState" keywords-only="yes"/>
+            </state>
+            
+            <state id="SingleComment" type="comment" color="#236E25" font-weight="normal" font-style="italic">
+                <begin><regex>;</regex></begin>
+                <end><regex>(?&lt;!\\)[\n\r]</regex></end>
+                <import mode="Base" state="EmailAndURLContainerState" keywords-only="yes"/>
+            </state>
+            
+            <state id="String" type="string" color="#760f15" font-weight="normal" font-style="normal" foldable="no">
+                <begin><regex>"</regex></begin>
+                <end><regex>((?&lt;!\\)(\\\\)*)"</regex></end>
+            </state>
+
+            <state id="Body" type="block" foldable="yes">
+                <begin><regex>{</regex></begin>
+                <end><regex>}</regex></end>
+                <import />
+            </state>
+            
+        </default>
+
+    </states>
+
+</syntax>
