@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>SEEMode.LLVM</string>
 	<key>CFBundleName</key>
-	<string>C</string>
+	<string>LLVM</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2009 Alastair Lynn</string>
 	<key>CFBundleShortVersionString</key>
